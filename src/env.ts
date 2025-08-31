@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const schema = z.object({
-  NEXT_PUBLIC_SERVER_URL: z.string().url(),       // e.g., http://localhost:3000
+  NEXT_PUBLIC_SERVER_URL: z.string().url(),      
   NODE_ENV: z.enum(["development","production","test"]).default("development"),
 });
 
@@ -11,9 +11,6 @@ const parsed = schema.safeParse({
 });
 
 if (!parsed.success) {
-  // Fail fast (as required by the task)
-  // In Next, this will surface at build or dev startup
-  // eslint-disable-next-line no-console
   console.error("Environment validation error:", parsed.error.flatten());
   throw new Error("Invalid environment");
 }

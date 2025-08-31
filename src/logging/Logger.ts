@@ -7,7 +7,6 @@ const threshold: Level = env.NODE_ENV === "production" ? "info" : "debug";
 function log(level: Level, ...args: unknown[]) {
   if (levelOrder[level] < levelOrder[threshold]) return;
   const prefix = `[${new Date().toISOString()}] ${level.toUpperCase()}:`;
-  // eslint-disable-next-line no-console
   (console as any)[level === "debug" ? "log" : level](prefix, ...args);
 }
 
